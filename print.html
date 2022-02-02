@@ -76,7 +76,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded affix "><a href="introduction.html">Introduction</a></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="introduction.html">Introduction</a></li><li class="chapter-item expanded "><a href="quickstart.html"><strong aria-hidden="true">1.</strong> Quickstart</a></li><li class="chapter-item expanded "><a href="guide.html"><strong aria-hidden="true">2.</strong> Guide</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="3d.html"><strong aria-hidden="true">2.1.</strong> 3D mode</a></li><li class="chapter-item expanded "><a href="rpc.html"><strong aria-hidden="true">2.2.</strong> Javascript-Rust RPC</a></li><li class="chapter-item expanded "><a href="bundling.html"><strong aria-hidden="true">2.3.</strong> Asset bundling</a></li><li class="chapter-item expanded "><a href="react-integration.html"><strong aria-hidden="true">2.4.</strong> React integration</a></li><li class="chapter-item expanded "><a href="performance.html"><strong aria-hidden="true">2.5.</strong> Performance</a></li><li class="chapter-item expanded "><a href="engines.html"><strong aria-hidden="true">2.6.</strong> Webview Engines</a></li></ol></li><li class="chapter-item expanded "><a href="faq.html"><strong aria-hidden="true">3.</strong> FAQ</a></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -168,6 +168,77 @@
 <p><strong>Narrower cross-platform support</strong>: currently, only Linux and Windows are supported. See <a href="engines.html">engines</a>.</p>
 </li>
 </ul>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="quickstart-ui-mode"><a class="header" href="#quickstart-ui-mode">Quickstart (UI mode)</a></h1>
+<p>This is a quickstart for UI/2D webview. See also <a href="3d.html">3d mode</a></p>
+<p><img src="assets/2d.png" alt="2d webview" /></p>
+<p>Add imports:</p>
+<pre><pre class="playground"><code class="language-rust">
+<span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span><span class="boring">extern crate bevy_webview;
+</span>use bevy_webview::prelude::*;
+<span class="boring">}
+</span></code></pre></pre>
+<p>Add the plugin to Bevy App:</p>
+<pre><pre class="playground"><code class="language-rust">
+<span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span><span class="boring">extern crate bevy;
+</span><span class="boring">extern crate bevy_webview;
+</span><span class="boring">use bevy::prelude::*;
+</span><span class="boring">use bevy_webview::prelude::*;
+</span>App::new()
+    // initializations...
+   .add_plugin(WebviewPlugin::with_engine(webview_engine::headless));
+<span class="boring">}
+</span></code></pre></pre>
+<p>For various engines, see <a href="engines.html">engines</a> -section.</p>
+<p>Make sure that you have UI camera in the scene:</p>
+<pre><pre class="playground"><code class="language-rust">
+<span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span><span class="boring">extern crate bevy;
+</span><span class="boring">use bevy::prelude::*;
+</span>fn setup(mut commands: Commands) {
+    commands.spawn_bundle(UiCameraBundle::default());
+}
+<span class="boring">}
+</span></code></pre></pre>
+<p>Finally, spawn the Webview:</p>
+<pre><pre class="playground"><code class="language-rust">
+<span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span><span class="boring">extern crate bevy;
+</span><span class="boring">extern crate bevy_webview;
+</span><span class="boring">use bevy::prelude::*;
+</span><span class="boring">use bevy_webview::prelude::*;
+</span>fn setup(mut commands: Commands) {
+    commands.spawn_bundle(WebviewUIBundle {
+        webview: Webview {
+            url: Some(String::from(&quot;https://bevyengine.org/&quot;)),
+            ..Default::default()
+        },
+        style: Style {
+            size: Size::new(Val::Percent(80.0), Val::Percent(80.)),
+            margin: Rect::all(Val::Auto),
+            justify_content: JustifyContent::Center,
+            align_items: AlignItems::Center,
+            ..Default::default()
+        },
+        ..Default::default()
+    });
+}
+<span class="boring">}
+</span></code></pre></pre>
+<p>More examples at <a href="https://github.com/blaind/bevy_webview/examples/">examples</a>.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="guide"><a class="header" href="#guide">Guide</a></h1>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="3d-mode"><a class="header" href="#3d-mode">3D mode</a></h1>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="javascript-rust-rpc"><a class="header" href="#javascript-rust-rpc">Javascript-Rust RPC</a></h1>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="asset-bundling"><a class="header" href="#asset-bundling">Asset bundling</a></h1>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="react-integration"><a class="header" href="#react-integration">React integration</a></h1>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="performance"><a class="header" href="#performance">Performance</a></h1>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="webview-engines"><a class="header" href="#webview-engines">Webview Engines</a></h1>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="faq"><a class="header" href="#faq">FAQ</a></h1>
 
                     </main>
 
