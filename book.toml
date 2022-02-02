@@ -1,0 +1,6 @@
+[book]
+authors = ["Mika Vatanen"]
+language = "en"
+multilingual = false
+src = "src"
+title = "Bevy Webview Book"
