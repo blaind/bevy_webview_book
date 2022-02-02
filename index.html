@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>Chapter 1 - Bevy Webview Book</title>
+        <title>Introduction - Bevy Webview Book</title>
         <!-- Custom HTML head -->
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
@@ -75,7 +75,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="chapter_1.html"><strong aria-hidden="true">1.</strong> Chapter 1</a></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="introduction.html">Introduction</a></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -134,7 +134,39 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1 id="chapter-1"><a class="header" href="#chapter-1">Chapter 1</a></h1>
+                        <h1 id="introduction"><a class="header" href="#introduction">Introduction</a></h1>
+<p><code>bevy_webview</code> is an experimental webview integration for Bevy game engine for rapidly iterating and building UI's using existing web-technogies and skillsets.</p>
+<p><img src="assets/bevy_webview.png" alt="Example" /></p>
+<h2 id="use-cases"><a class="header" href="#use-cases">Use cases</a></h2>
+<ul>
+<li>
+<p><strong>Menus, about pages, etc.</strong>: In current state, webviews are good for menus, about pages, and other views that are updated maximum a few times a second</p>
+</li>
+<li>
+<p><strong>Pre-native iteration</strong>: Webviews are a good starting ground when experimenting the app/game design. Eventually, after landing a visually desired state, it is possible to continue by converting to native UI's.</p>
+</li>
+</ul>
+<h3 id="benefits"><a class="header" href="#benefits">Benefits?</a></h3>
+<ul>
+<li>
+<p><strong>Faster iteration speed</strong>: with instant reloading of webviews, it is possible to see the UI changes almost immediately. This is a lot faster iteration compared to compiled workflows. Seconds waiting add up quickly.</p>
+</li>
+<li>
+<p><strong>Reuse of existing web-based technologies</strong>: use tried-and-tested web technologies for developing the UI. Existing skillsets apply. Easier co-operation between game software developers and UI designers.</p>
+</li>
+</ul>
+<h3 id="disadvantages"><a class="header" href="#disadvantages">Disadvantages?</a></h3>
+<ul>
+<li>
+<p><strong>Lower performance</strong>: using a webview is inherently slower, and it is probably never possible to reach near-native speeds with the webview technology. Current implementation of <code>bevy_webview</code> is not recommended for use cases where the webview changes for every frame. See <a href="performance.html">performance</a></p>
+</li>
+<li>
+<p><strong>Larger memory footprint</strong>: browsers are complex software. Using a webview in your application will increase memory usage in the range of 50 - 150MB.</p>
+</li>
+<li>
+<p><strong>Narrower cross-platform support</strong>: currently, only Linux and Windows are supported. See <a href="engines.html">engines</a>.</p>
+</li>
+</ul>
 
                     </main>
 
