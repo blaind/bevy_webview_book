@@ -173,14 +173,16 @@ pub struct LoginRequest {
     .add_webview_input_event::&lt;LoginRequest&gt;(&quot;login&quot;);
 <span class="boring">}
 </span></code></pre></pre>
-<p>And define a system to receive events:</p>
+<p>And define a system to receive events, using a <code>WebviewEventReader&lt;T&gt;</code>:</p>
 <pre><pre class="playground"><code class="language-rust">
 <span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span><span class="boring">extern crate bevy;
+</span><span class="boring">extern crate bevy_webview;
 </span><span class="boring">use bevy::prelude::*;
+</span><span class="boring">use bevy_webview::prelude::*;
 </span><span class="boring">struct LoginRequest { username: String };
-</span>fn login_handler(mut login_request_events: EventReader&lt;LoginRequest&gt;) {
+</span>fn login_handler(mut login_request_events: WebviewEventReader&lt;LoginRequest&gt;) {
     for event in login_request_events.iter() {
         println!(&quot;Received a login request, username={:?}&quot;, event.username);
     }
@@ -229,14 +231,16 @@ pub struct AppTime {
   );
 });
 </code></pre>
-<p>Finally, send an event from a Bevy system using a Bevy-standard <code>EventWriter&lt;T&gt;</code>:</p>
+<p>Finally, send an event from a Bevy system using a <code>WebviewEventWriter&lt;T&gt;</code>:</p>
 <pre><pre class="playground"><code class="language-rust">
 <span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span><span class="boring">extern crate bevy;
+</span><span class="boring">extern crate bevy_webview;
 </span><span class="boring">use bevy::prelude::*;
+</span><span class="boring">use bevy_webview::prelude::*;
 </span><span class="boring">struct AppTime { seconds_since_startup: f64 };
-</span>fn send_time_system(mut app_time: EventWriter&lt;AppTime&gt;, time: Res&lt;Time&gt;) {
+</span>fn send_time_system(mut app_time: WebviewEventWriter&lt;AppTime&gt;, time: Res&lt;Time&gt;) {
     app_time.send(AppTime {
         seconds_since_startup: time.seconds_since_startup(),
     });
