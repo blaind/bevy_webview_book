@@ -215,7 +215,7 @@
 </span>fn setup(mut commands: Commands) {
     commands.spawn_bundle(WebviewUIBundle {
         webview: Webview {
-            url: Some(String::from(&quot;https://bevyengine.org/&quot;)),
+            uri: Some(String::from(&quot;https://bevyengine.org/&quot;)),
             ..Default::default()
         },
         style: Style {
@@ -299,7 +299,7 @@
 </span>fn setup(mut commands: Commands) {
     commands.spawn_bundle(WebviewBundle {
         webview: Webview {
-            url: Some(String::from(&quot;https://bevyengine.org/&quot;)),
+            uri: Some(String::from(&quot;https://bevyengine.org/&quot;)),
             ..Default::default()
         },
         transform: Transform {
@@ -424,11 +424,9 @@ pub struct AppTime {
 </span></code></pre></pre>
 <p>For now, you should avoid redrawing on Javascript by every frame. See <a href="performance.html">performance</a> for more information.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="asset-bundling"><a class="header" href="#asset-bundling">Asset bundling</a></h1>
-<p><strong>Unfortunately, not yet implemented!</strong></p>
-<p>The plan is to have web-assets (HTML, JS, etc.) to be bundled into the bevy app.</p>
-<h2 id="api-usage"><a class="header" href="#api-usage">API usage</a></h2>
-<p><strong>Unfortunately, not yet implemented!</strong></p>
-<p>The bundler will bundle assets from <code>assets/webview/...</code> folder into the application built <strong>in release mode</strong>. These assets can be referenced by <code>webview://</code> protocol, e.g. <code>assets/webview/react_app/index.html</code> will be resolvable through <code>webview://react_app/index.html</code>.</p>
+<p><strong>Asset bundling not yet implemented</strong>, but local asset usage works already.</p>
+<h2 id="local-assets"><a class="header" href="#local-assets">Local Assets</a></h2>
+<p>It is possible to use local assets from <code>assets/webview/...</code> folder. These assets can be referenced by <code>webview://</code> protocol, e.g. <code>assets/webview/react_app/index.html</code> will be resolvable through <code>webview://react_app/index.html</code>.</p>
 <pre><code class="language-rust ignore"><span class="boring">extern crate bevy;
 </span><span class="boring">extern crate bevy_webview;
 </span><span class="boring">use bevy::prelude::*;
@@ -436,7 +434,7 @@ pub struct AppTime {
 </span>fn setup(mut commands: Commands) {
     commands.spawn_bundle(WebviewUIBundle {
         webview: Webview {
-            url: Some(String::from(&quot;webview://react_app/index.html&quot;)),
+            uri: Some(String::from(&quot;webview://react_app/index.html&quot;)),
             ..Default::default()
         }
     });
@@ -464,8 +462,8 @@ To create a production build, use npm run build.
 </span>fn setup(mut commands: Commands) {
     commands.spawn_bundle(WebviewUIBundle {
         webview: Webview {
-            url: Some(String::from(&quot;http://localhost:3000/&quot;)),
-            transparent: true,
+            uri: Some(String::from(&quot;http://localhost:3000/&quot;)),
+            color: Color::rgba(0., 0., 0., 0.0),
             ..Default::default()
         },
         style: Style {
@@ -490,9 +488,9 @@ To create a production build, use npm run build.
     commands.spawn_bundle(WebviewUIBundle {
         webview: Webview {
             #[cfg(debug_assertions)]
-            url: Some(String::from(&quot;http://localhost:3000/&quot;)),
+            uri: Some(String::from(&quot;http://localhost:3000/&quot;)),
             #[cfg(not(debug_assertions))]
-            url: Some(String::from(&quot;webview://react_app/index.html&quot;)),
+            uri: Some(String::from(&quot;webview://react_app/index.html&quot;)),
             // NOTE! The webview:// method is not yet implemented!
             transparent: true,
             ..Default::default()

@@ -156,8 +156,8 @@ To create a production build, use npm run build.
 </span>fn setup(mut commands: Commands) {
     commands.spawn_bundle(WebviewUIBundle {
         webview: Webview {
-            url: Some(String::from(&quot;http://localhost:3000/&quot;)),
-            transparent: true,
+            uri: Some(String::from(&quot;http://localhost:3000/&quot;)),
+            color: Color::rgba(0., 0., 0., 0.0),
             ..Default::default()
         },
         style: Style {
@@ -182,9 +182,9 @@ To create a production build, use npm run build.
     commands.spawn_bundle(WebviewUIBundle {
         webview: Webview {
             #[cfg(debug_assertions)]
-            url: Some(String::from(&quot;http://localhost:3000/&quot;)),
+            uri: Some(String::from(&quot;http://localhost:3000/&quot;)),
             #[cfg(not(debug_assertions))]
-            url: Some(String::from(&quot;webview://react_app/index.html&quot;)),
+            uri: Some(String::from(&quot;webview://react_app/index.html&quot;)),
             // NOTE! The webview:// method is not yet implemented!
             transparent: true,
             ..Default::default()

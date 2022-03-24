@@ -135,11 +135,9 @@
                 <div id="content" class="content">
                     <main>
                         <h1 id="asset-bundling"><a class="header" href="#asset-bundling">Asset bundling</a></h1>
-<p><strong>Unfortunately, not yet implemented!</strong></p>
-<p>The plan is to have web-assets (HTML, JS, etc.) to be bundled into the bevy app.</p>
-<h2 id="api-usage"><a class="header" href="#api-usage">API usage</a></h2>
-<p><strong>Unfortunately, not yet implemented!</strong></p>
-<p>The bundler will bundle assets from <code>assets/webview/...</code> folder into the application built <strong>in release mode</strong>. These assets can be referenced by <code>webview://</code> protocol, e.g. <code>assets/webview/react_app/index.html</code> will be resolvable through <code>webview://react_app/index.html</code>.</p>
+<p><strong>Asset bundling not yet implemented</strong>, but local asset usage works already.</p>
+<h2 id="local-assets"><a class="header" href="#local-assets">Local Assets</a></h2>
+<p>It is possible to use local assets from <code>assets/webview/...</code> folder. These assets can be referenced by <code>webview://</code> protocol, e.g. <code>assets/webview/react_app/index.html</code> will be resolvable through <code>webview://react_app/index.html</code>.</p>
 <pre><code class="language-rust ignore"><span class="boring">extern crate bevy;
 </span><span class="boring">extern crate bevy_webview;
 </span><span class="boring">use bevy::prelude::*;
@@ -147,7 +145,7 @@
 </span>fn setup(mut commands: Commands) {
     commands.spawn_bundle(WebviewUIBundle {
         webview: Webview {
-            url: Some(String::from(&quot;webview://react_app/index.html&quot;)),
+            uri: Some(String::from(&quot;webview://react_app/index.html&quot;)),
             ..Default::default()
         }
     });
