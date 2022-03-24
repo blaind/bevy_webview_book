@@ -75,7 +75,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded affix "><a href="introduction.html">Introduction</a></li><li class="chapter-item expanded "><a href="quickstart.html"><strong aria-hidden="true">1.</strong> Quickstart</a></li><li class="chapter-item expanded "><a href="guide.html"><strong aria-hidden="true">2.</strong> Guide</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="3d.html"><strong aria-hidden="true">2.1.</strong> 3D mode</a></li><li class="chapter-item expanded "><a href="rpc.html"><strong aria-hidden="true">2.2.</strong> Javascript-Rust RPC</a></li><li class="chapter-item expanded "><a href="commands.html"><strong aria-hidden="true">2.3.</strong> Browser Commands</a></li><li class="chapter-item expanded "><a href="bundling.html"><strong aria-hidden="true">2.4.</strong> Asset bundling</a></li><li class="chapter-item expanded "><a href="react-integration.html"><strong aria-hidden="true">2.5.</strong> React integration</a></li><li class="chapter-item expanded "><a href="performance.html"><strong aria-hidden="true">2.6.</strong> Performance</a></li><li class="chapter-item expanded "><a href="engines.html" class="active"><strong aria-hidden="true">2.7.</strong> Webview Engines</a></li></ol></li><li class="chapter-item expanded "><a href="faq.html"><strong aria-hidden="true">3.</strong> FAQ</a></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="introduction.html">Introduction</a></li><li class="chapter-item expanded "><a href="quickstart.html"><strong aria-hidden="true">1.</strong> Quickstart</a></li><li class="chapter-item expanded "><a href="guide.html"><strong aria-hidden="true">2.</strong> Guide</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="3d.html"><strong aria-hidden="true">2.1.</strong> 3D mode</a></li><li class="chapter-item expanded "><a href="rpc.html"><strong aria-hidden="true">2.2.</strong> Javascript-Rust RPC</a></li><li class="chapter-item expanded "><a href="bundling.html"><strong aria-hidden="true">2.3.</strong> Asset bundling</a></li><li class="chapter-item expanded "><a href="react-integration.html"><strong aria-hidden="true">2.4.</strong> React integration</a></li><li class="chapter-item expanded "><a href="performance.html"><strong aria-hidden="true">2.5.</strong> Performance</a></li><li class="chapter-item expanded "><a href="engines.html" class="active"><strong aria-hidden="true">2.6.</strong> Webview Engines</a></li></ol></li><li class="chapter-item expanded "><a href="faq.html"><strong aria-hidden="true">3.</strong> FAQ</a></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -135,7 +135,51 @@
                 <div id="content" class="content">
                     <main>
                         <h1 id="webview-engines"><a class="header" href="#webview-engines">Webview Engines</a></h1>
-<p>TODO</p>
+<h2 id="linux"><a class="header" href="#linux">Linux</a></h2>
+<p>The plugin uses (<a href="https://webkitgtk.org/">webkitgtk</a> as an underlying engine on Linux. Windowing (in headless mode too) is handled by <a href="https://www.gtk.org/">gtk</a>.</p>
+<h3 id="headless"><a class="header" href="#headless">headless</a></h3>
+<p>Default mode. Implemented by using <a href="https://docs.gtk.org/gtk3/class.OffscreenWindow.html">gtk::OffscreenWindow</a> as a canvas, where the webview is initialized.</p>
+<pre><pre class="playground"><code class="language-rust">
+<span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span><span class="boring">extern crate bevy;
+</span><span class="boring">extern crate bevy_webview;
+</span><span class="boring">use bevy::prelude::*;
+</span><span class="boring">use bevy_webview::prelude::*;
+</span>let webview_plugin = WebviewPlugin::with_engine(webview_engine::headless);
+
+App::new()
+    // initializations...
+   .add_plugin(webview_plugin);
+<span class="boring">}
+</span></code></pre></pre>
+<h3 id="windowed"><a class="header" href="#windowed">windowed</a></h3>
+<p>For debugging purposes. This will start the webview in a windowed mode. Implemented by using <a href="https://docs.gtk.org/gtk3/class.Window.html">gtk::Window</a>.</p>
+<pre><pre class="playground"><code class="language-rust">
+<span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span><span class="boring">extern crate bevy;
+</span><span class="boring">extern crate bevy_webview;
+</span><span class="boring">use bevy::prelude::*;
+</span><span class="boring">use bevy_webview::prelude::*;
+</span>let webview_plugin = WebviewPlugin::with_engine(webview_engine::windowed);
+
+App::new()
+    // initializations...
+   .add_plugin(webview_plugin);
+<span class="boring">}
+</span></code></pre></pre>
+<h2 id="windows"><a class="header" href="#windows">Windows</a></h2>
+<p>The plugin uses <a href="https://developer.microsoft.com/en-us/microsoft-edge/webview2/">WebView2</a> as an underlying webview engine on Windows. Windowing is handled by <a href="https://docs.microsoft.com/en-us/windows/win32/learnwin32/learn-to-program-for-windows">Win32 C++</a> API.</p>
+<h1 id="integrating-an-own-engine"><a class="header" href="#integrating-an-own-engine">Integrating an own engine</a></h1>
+<p>It is also possible to use your own webview engine. For now, see the <a href="https://github.com/blaind/bevy_webview/blob/main/crates/headless_webview/src/engines/dummy.rs">dummy.rs</a> -example for API usage.</p>
+<h2 id="unimplemented"><a class="header" href="#unimplemented">Unimplemented</a></h2>
+<p>Help needed! Currently the following platforms are unimplemented.</p>
+<ul>
+<li>Mac</li>
+<li>IOS</li>
+<li>Android</li>
+</ul>
 
                     </main>
 
