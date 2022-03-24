@@ -1,3 +1,8 @@
 # Performance
 
-TODO
+TODO!
+
+- Memory usage
+- CPU usage
+- GPU usage
+- Rendering

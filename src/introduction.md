@@ -1,12 +1,8 @@
-# Bevy Webview Book
+# Introduction
 
-Rapidly iterate and build Bevy UI's with existing web-based technologies using [bevy_webview](https://github.com/blaind/bevy_webview)
+`bevy_webview` is an experimental webview integration for Bevy game engine for rapidly iterating and building UI's using existing web-technogies and skillsets.
 
 ![Example](assets/bevy_webview.png)
-
-If you believe this is a project worth continuing development for, please show your support by starring the repo 🙏
-
-<a href="https://github.com/blaind/bevy_webview" target="_blank">![bevy_webview](assets/star.png)</a>
 
 ## Use cases
 
