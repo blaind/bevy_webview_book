@@ -45,13 +45,15 @@ App::new()
     .add_webview_input_event::<LoginRequest>("login");
 ```
 
-And define a system to receive events:
+And define a system to receive events, using a `WebviewEventReader<T>`:
 
 ```rust
 # extern crate bevy;
+# extern crate bevy_webview;
 # use bevy::prelude::*;
+# use bevy_webview::prelude::*;
 # struct LoginRequest { username: String };
-fn login_handler(mut login_request_events: EventReader<LoginRequest>) {
+fn login_handler(mut login_request_events: WebviewEventReader<LoginRequest>) {
     for event in login_request_events.iter() {
         println!("Received a login request, username={:?}", event.username);
     }
@@ -107,13 +109,15 @@ rpc.on("app_time", (app_time) => {
 });
 ```
 
-Finally, send an event from a Bevy system using a Bevy-standard `EventWriter<T>`:
+Finally, send an event from a Bevy system using a `WebviewEventWriter<T>`:
 
 ```rust
 # extern crate bevy;
+# extern crate bevy_webview;
 # use bevy::prelude::*;
+# use bevy_webview::prelude::*;
 # struct AppTime { seconds_since_startup: f64 };
-fn send_time_system(mut app_time: EventWriter<AppTime>, time: Res<Time>) {
+fn send_time_system(mut app_time: WebviewEventWriter<AppTime>, time: Res<Time>) {
     app_time.send(AppTime {
         seconds_since_startup: time.seconds_since_startup(),
     });
