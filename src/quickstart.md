@@ -45,7 +45,7 @@ Finally, spawn the Webview:
 fn setup(mut commands: Commands) {
     commands.spawn_bundle(WebviewUIBundle {
         webview: Webview {
-            url: Some(String::from("https://bevyengine.org/")),
+            uri: Some(String::from("https://bevyengine.org/")),
             ..Default::default()
         },
         style: Style {

@@ -23,8 +23,8 @@ Connect the webview to the React app using an URL. Note the `transparent: true` 
 fn setup(mut commands: Commands) {
     commands.spawn_bundle(WebviewUIBundle {
         webview: Webview {
-            url: Some(String::from("http://localhost:3000/")),
-            transparent: true,
+            uri: Some(String::from("http://localhost:3000/")),
+            color: Color::rgba(0., 0., 0., 0.0),
             ..Default::default()
         },
         style: Style {
@@ -52,9 +52,9 @@ fn setup(mut commands: Commands) {
     commands.spawn_bundle(WebviewUIBundle {
         webview: Webview {
             #[cfg(debug_assertions)]
-            url: Some(String::from("http://localhost:3000/")),
+            uri: Some(String::from("http://localhost:3000/")),
             #[cfg(not(debug_assertions))]
-            url: Some(String::from("webview://react_app/index.html")),
+            uri: Some(String::from("webview://react_app/index.html")),
             // NOTE! The webview:// method is not yet implemented!
             transparent: true,
             ..Default::default()

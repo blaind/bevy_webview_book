@@ -1,14 +1,10 @@
 # Asset bundling
 
-**Unfortunately, not yet implemented!**
+**Asset bundling not yet implemented**, but local asset usage works already.
 
-The plan is to have web-assets (HTML, JS, etc.) to be bundled into the bevy app.
+## Local Assets
 
-## API usage
-
-**Unfortunately, not yet implemented!**
-
-The bundler will bundle assets from `assets/webview/...` folder into the application built **in release mode**. These assets can be referenced by `webview://` protocol, e.g. `assets/webview/react_app/index.html` will be resolvable through `webview://react_app/index.html`.
+It is possible to use local assets from `assets/webview/...` folder. These assets can be referenced by `webview://` protocol, e.g. `assets/webview/react_app/index.html` will be resolvable through `webview://react_app/index.html`.
 
 ```rust,ignore
 # extern crate bevy;
@@ -18,7 +14,7 @@ The bundler will bundle assets from `assets/webview/...` folder into the applica
 fn setup(mut commands: Commands) {
     commands.spawn_bundle(WebviewUIBundle {
         webview: Webview {
-            url: Some(String::from("webview://react_app/index.html")),
+            uri: Some(String::from("webview://react_app/index.html")),
             ..Default::default()
         }
     });
